@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDebug>
+#include "button.h"
 
 class UI : public QWidget
 {
@@ -11,6 +12,8 @@ class UI : public QWidget
 public:
     UI(QWidget *parent = 0);
     ~UI();
+private:
+    Button *ob_button_login;
 };
 
 #endif // UI_H

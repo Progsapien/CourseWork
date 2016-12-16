@@ -23,7 +23,8 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void enterEvent(QEvent *event);
     virtual void leaveEvent(QEvent *event);
-
+signals:
+    void clicked();
 };
 
 #endif // BUTTON_H

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     data/vegetable_categories/dessert.cpp \
     data/vegetable_categories/cruciferous.cpp \
     ui/login.cpp \
-    ui/button.cpp
+    ui/button.cpp \
+    ui/mainui.cpp
 
 HEADERS  += ui/ui.h \
     data/vegetable.h \
@@ -33,4 +34,9 @@ HEADERS  += ui/ui.h \
     data/vegetable_categories/dessert.h \
     data/vegetable_categories/cruciferous.h \
     ui/login.h \
-    ui/button.h
+    ui/button.h \
+    libusb.h \
+    ui/mainui.h
+
+RESOURCES += \
+    resources.qrc

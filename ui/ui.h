@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include <QDebug>
-#include "button.h"
+#include "login.h"
+#include "mainui.h"
+#include <QTimer>
 
 class UI : public QWidget
 {
@@ -12,8 +14,21 @@ class UI : public QWidget
 public:
     UI(QWidget *parent = 0);
     ~UI();
+
+    void changeWidget(QWidget *new_widget);
+
 private:
-    Button *ob_button_login;
+    Login *ob_window_login;
+    MainUI *ob_window_main;
+
+    QTimer *ob_timer_main;
+
+    QWidget *new_widget;
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event);
+private slots:
+    void onTimer();
 };
 
 #endif // UI_H

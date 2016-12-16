@@ -4,12 +4,12 @@ Button::Button(QString text)
 {
     this->setText(text);
     this->setStyleSheet("background: rgba(60,120,210,1); border: none; color: white");
-    this->setFixedSize(100,100);
+    this->setAlignment(Qt::AlignCenter);
 }
 
 Button::Button(QString text, QString imgPath, int position) {
     switch (position) {
-    case ImagePosition::Left:
+   case ImagePosition::Left:
         this->setText("<img src=\""+imgPath+"\"> "+text);
         break;
     case ImagePosition::Top:
@@ -34,6 +34,7 @@ void Button::mousePressEvent(QMouseEvent *event) {
 void Button::mouseReleaseEvent(QMouseEvent *event) {
     event->accept();
     this->setOpacity(0.7);
+    emit clicked();
 }
 
 void Button::enterEvent(QEvent *event) {

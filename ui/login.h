@@ -5,6 +5,8 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QDebug>
+#include "button.h"
 
 class Login : public QWidget
 {
@@ -19,9 +21,12 @@ private:
     QLineEdit *ob_line_name;
 
     QVBoxLayout *ob_vbox_main;
-signals:
-    QString login();
 
+    Button *ob_button_login;
+signals:
+    void login(QString username);
+private slots:
+    void onButtonLoginClick();
 };
 
 #endif // LOGIN_H

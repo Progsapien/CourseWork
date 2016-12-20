@@ -15,6 +15,7 @@ public:
     // get
 
     QString title();
+    QString icon();
     double weight();
     double calories();
 
@@ -23,10 +24,12 @@ public:
     void setWeight(double weight);
     void setTitle(QString title);
     void setCalories(double calories);
+    void setIcon(QString iconPath);
 
 protected:
 
     QString _title;
+    QString _icon;
     double _weight;
     double _calories;
 

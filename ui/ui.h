@@ -23,12 +23,14 @@ private:
 
     QTimer *ob_timer_main;
 
-    QWidget *new_widget;
+    QWidget *new_widget,
+            *current_widget;
 
 protected:
     virtual void resizeEvent(QResizeEvent *event);
 private slots:
     void onTimer();
+    void onLogin(QString username);
 };
 
 #endif // UI_H

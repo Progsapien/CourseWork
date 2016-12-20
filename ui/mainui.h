@@ -3,19 +3,22 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <QListWidget>
 #include <QLabel>
 #include "button.h"
+#include "saladbutton.h"
 
 class MainUI : public QWidget
 {
     Q_OBJECT
 public:
     explicit MainUI(QWidget *parent = 0);
+private:
+    SaladButton *ob_sbutton_status;
 
-signals:
+    QVBoxLayout *ob_vlay_main;
 
-public slots:
+    QListWidget *ob_list_salads;
 };
 
 #endif // MAINUI_H

@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
     ui/ui.cpp \
     data/vegetable.cpp \
-    data/vegetable_categories/salad.cpp \
     data/vegetable_categories/tomatos.cpp \
     data/vegetable_categories/leguminous.cpp \
     data/vegetables/tomato.cpp \
@@ -23,11 +22,14 @@ SOURCES += main.cpp\
     data/vegetable_categories/cruciferous.cpp \
     ui/login.cpp \
     ui/button.cpp \
-    ui/mainui.cpp
+    ui/mainui.cpp \
+    managers/saladmanager.cpp \
+    ui/saladbutton.cpp \
+    data/vegetable_categories/salads.cpp \
+    data/salad.cpp
 
 HEADERS  += ui/ui.h \
     data/vegetable.h \
-    data/vegetable_categories/salad.h \
     data/vegetable_categories/tomatos.h \
     data/vegetable_categories/leguminous.h \
     data/vegetables/tomato.h \
@@ -35,8 +37,11 @@ HEADERS  += ui/ui.h \
     data/vegetable_categories/cruciferous.h \
     ui/login.h \
     ui/button.h \
-    libusb.h \
-    ui/mainui.h
+    ui/mainui.h \
+    managers/saladmanager.h \
+    ui/saladbutton.h \
+    data/vegetable_categories/salads.h \
+    data/salad.h
 
 RESOURCES += \
     resources.qrc

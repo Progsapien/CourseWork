@@ -37,6 +37,10 @@ void Vegetable::setTitle(QString title) {
     this->_title = !title.isEmpty() ? title : "";
 }
 
+void Vegetable::setIcon(QString iconPath) {
+    this->_icon = !iconPath.isEmpty() ? iconPath : "";
+}
+
 Vegetable::~Vegetable() {
 
 }

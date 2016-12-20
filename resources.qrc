@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>resources/img/chef.png</file>
+        <file>resources/img/salad.png</file>
+        <file>resources/img/salad_empty.png</file>
+        <file>resources/img/vegetables/tomatos/tomato.png</file>
     </qresource>
 </RCC>

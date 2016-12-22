@@ -22,11 +22,15 @@ SOURCES += main.cpp\
     data/vegetable_categories/cruciferous.cpp \
     ui/login.cpp \
     ui/button.cpp \
-    ui/mainui.cpp \
     managers/saladmanager.cpp \
     ui/saladbutton.cpp \
     data/vegetable_categories/salads.cpp \
-    data/salad.cpp
+    data/salad.cpp \
+    data/table.cpp \
+    ui/tableui.cpp \
+    ui/addui.cpp \
+    managers/profilemanager.cpp \
+    managers/tablemanager.cpp
 
 HEADERS  += ui/ui.h \
     data/vegetable.h \
@@ -37,11 +41,17 @@ HEADERS  += ui/ui.h \
     data/vegetable_categories/cruciferous.h \
     ui/login.h \
     ui/button.h \
-    ui/mainui.h \
     managers/saladmanager.h \
     ui/saladbutton.h \
     data/vegetable_categories/salads.h \
-    data/salad.h
+    data/salad.h \
+    data/table.h \
+    ui/tableui.h \
+    ui/addui.h \
+    managers/profilemanager.h \
+    managers/tablemanager.h
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES +=

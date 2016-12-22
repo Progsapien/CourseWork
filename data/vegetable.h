@@ -2,6 +2,7 @@
 #define VEGETABLE_H
 
 #include <QObject>
+#include <QJsonObject>
 
 class Vegetable : public QObject
 {
@@ -18,6 +19,7 @@ public:
     QString icon();
     double weight();
     double calories();
+    QJsonObject toJSON();
 
     // set
 
@@ -25,6 +27,7 @@ public:
     void setTitle(QString title);
     void setCalories(double calories);
     void setIcon(QString iconPath);
+    void fromJSON(QJsonObject json);
 
 protected:
 

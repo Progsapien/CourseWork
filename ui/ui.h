@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QDebug>
 #include "login.h"
-#include "mainui.h"
 #include <QTimer>
+#include "tableui.h"
 
 class UI : public QWidget
 {
@@ -14,12 +14,12 @@ class UI : public QWidget
 public:
     UI(QWidget *parent = 0);
     ~UI();
-
+public slots:
     void changeWidget(QWidget *new_widget);
-
 private:
     Login *ob_window_login;
-    MainUI *ob_window_main;
+
+    TableUI *ob_window_table;
 
     QTimer *ob_timer_main;
 

@@ -10,13 +10,13 @@ Button::Button(QString text)
 Button::Button(QString text, QString imgPath, int position) {
     switch (position) {
    case ImagePosition::Left:
-        this->setText("<img src=\""+imgPath+"\"> "+text);
+        this->setText("<p align='center'><img src=\""+imgPath+"\"> "+text);
         break;
     case ImagePosition::Top:
-        this->setText("<img src=\""+imgPath+"\"><br><br>"+text);
+        this->setText("<p align='center'><img src=\""+imgPath+"\"><br><br>"+text);
         break;
     default:
-        this->setText(text+" <img src=\""+imgPath+"\">");
+        this->setText("<p align='center'>"+text+" <img src=\""+imgPath+"\">");
     }
 
     this->setOpacity(1);

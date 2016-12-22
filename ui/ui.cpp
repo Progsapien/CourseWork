@@ -5,8 +5,7 @@ UI::UI(QWidget *parent)
 {
     // create;
     ob_window_login = new Login;
-    ob_window_main = new MainUI;
-
+    ob_window_table = new TableUI;
     ob_timer_main = new QTimer;
 
     current_widget = NULL;
@@ -18,6 +17,8 @@ UI::UI(QWidget *parent)
 
     connect(ob_timer_main,SIGNAL(timeout()),SLOT(onTimer()));
     connect(ob_window_login,SIGNAL(login(QString)),SLOT(onLogin(QString)));
+    connect(ob_window_login,SIGNAL(login(QString)),ob_window_table,SLOT(onLogin(QString)));
+    connect(ob_window_table,SIGNAL(changeWidget(QWidget*)),SLOT(changeWidget(QWidget*)));
     changeWidget(ob_window_login);
 }
 
@@ -48,9 +49,9 @@ void UI::changeWidget(QWidget *new_widget) {
 
 void UI::onTimer() {
     if(new_widget->x() > 0) {
-        new_widget->move(new_widget->x()-10, 0);
+        new_widget->move(new_widget->x()-15, 0);
         if(current_widget != NULL) {
-            current_widget->move(current_widget->x()-5, 0);
+            current_widget->move(current_widget->x()-10, 0);
         }
     } else {
         new_widget->move(0, 0);
@@ -67,5 +68,5 @@ void UI::onTimer() {
 }
 
 void UI::onLogin(QString username) {
-    changeWidget(ob_window_main);
+    changeWidget(ob_window_table);
 }

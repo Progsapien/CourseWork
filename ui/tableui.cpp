@@ -10,9 +10,9 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
 
     ob_label_listSalads = new QLabel("Список салатов");
 
-    ob_button_addSalad = new Button("Добавить","qrc:/resources/img/add_salad_button.png", Button::Top);
-    ob_button_deleteSalad = new Button("Удалить", "qrc:/resources/img/delete_salad_button.png", Button::Top);
-    ob_button_searchSalad = new Button("Поиск", "qrc:/resources/img/search_salad_button.png", Button::Top);
+    ob_button_addSalad = new Button("<br><br>Добавить","qrc:/resources/img/add_salad_button.png", Button::Top);
+    ob_button_deleteSalad = new Button("<br><br>Удалить", "qrc:/resources/img/delete_salad_button.png", Button::Top);
+    ob_button_searchSalad = new Button("<br><br>Поиск", "qrc:/resources/img/search_salad_button.png", Button::Top);
     ob_vlay_list = new QVBoxLayout;
     ob_vlay_operations = new QVBoxLayout;
 
@@ -24,10 +24,15 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
 
     ob_window_addui = new AddUI;
 
+    ob_window_info = new SaladInfoUI;
+
+    ob_window_veg = new VegetablesUI;
+
     ob_sbutton_add = new SaladButton("Салатов нет", "Добавить салат", "qrc:/resources/img/salad_empty.png", "qrc:/resources/img/salad.png");
 
     // config;
     setLayout(ob_hlay_main);
+    setWindowTitle("Шеф-повар");
     setStyleSheet("background: rgb(54, 66, 86);");
 
     ob_hlay_main->addWidget(ob_sbutton_add);
@@ -58,6 +63,10 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     connect(ob_button_addSalad,SIGNAL(clicked()),SLOT(onAddClick()));
     connect(ob_window_addui,SIGNAL(createSalad(QString)),SLOT(onCreateSalad(QString)));
     connect(ob_sbutton_add,SIGNAL(clicked()),SLOT(onAddClick()));
+    connect(ob_list_salads,SIGNAL(itemDoubleClicked(QListWidgetItem*)),SLOT(onDoubleClick(QListWidgetItem*)));
+    connect(ob_window_info,SIGNAL(backToTable()),SLOT(backToTable()));
+    connect(ob_window_info,SIGNAL(ingredients()),SLOT(ingredientsCall()));
+    connect(ob_window_veg,SIGNAL(backToInfo()),SLOT(backToInfo()));
 }
 
 void TableUI::onAddClick() {
@@ -101,3 +110,19 @@ void TableUI::onCreateSalad(QString saladName) {
     changeWidget(this);
 }
 
+void TableUI::onDoubleClick(QListWidgetItem *item) {
+    ob_window_info->showInfo(ob_table->getSalads()->at(ob_list_salads->row(item)));
+    changeWidget(ob_window_info);
+}
+
+void TableUI::backToTable() {
+    emit changeWidget(this);
+}
+
+void TableUI::ingredientsCall() {
+    emit changeWidget(ob_window_veg);
+}
+
+void TableUI::backToInfo() {
+    emit changeWidget(ob_window_info);
+}

@@ -41,6 +41,26 @@ Salad* SaladManager::fromJSON(QJsonObject json) {
     return new_salad;
 }
 
+double SaladManager::totalCalories(Salad *salad) {
+    double calories = 0;
+
+    for(int i = 0; i < salad->allVegetables()->count(); i++) {
+        calories += salad->allVegetables()->at(i)->calories();
+    }
+
+    return calories;
+}
+
+double SaladManager::totalWeight(Salad *salad) {
+    double weight = 0;
+
+    for(int i = 0; i < salad->allVegetables()->count(); i++) {
+        weight += salad->allVegetables()->at(i)->weight();
+    }
+
+    return weight;
+}
+
 void SaladManager::addVegetable(Salad *salad, Vegetable *vegetable) {
     salad->allVegetables()->append(vegetable);
 }

@@ -7,22 +7,6 @@ Salad::Salad(QObject *parent) : QObject(parent)
 
 }
 
-void Salad::setTotalCalories(double calories) {
-    this->_totalCalories = calories >= 0 ? calories : 0;
-}
-
-void Salad::setTotalWeight(double weight) {
-    this->_totalWeight = weight >= 0 ? weight : 0;
-}
-
-double Salad::totalCalories() {
-    return this->_totalCalories;
-}
-
-double Salad::totalWeight() {
-    return this->_totalWeight;
-}
-
 QList<Vegetable*>* Salad::allVegetables() {
     return ob_list_vegetables;
 }

@@ -14,15 +14,11 @@ public:
 
     // get;
 
-    double totalCalories();
-    double totalWeight();
     QString title();
     QList<Vegetable *> *allVegetables();
 
     // set;
 
-    void setTotalCalories(double calories);
-    void setTotalWeight(double weight);
     void setVegetables(QList<Vegetable*> allVegetables);
     QJsonArray toJSON();
     void fromJSON(QJsonArray json);
@@ -31,8 +27,6 @@ public:
 private:
 
     QList<Vegetable*> *ob_list_vegetables;
-    double _totalCalories;
-    double _totalWeight;
     QString _title;
 };
 

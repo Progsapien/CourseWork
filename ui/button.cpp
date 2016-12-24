@@ -14,7 +14,7 @@ Button::Button(QString text, QString imgPath, int position) {
         this->setText("<p align='center'><img src=\""+imgPath+"\"> "+text);
         break;
     case ImagePosition::Top:
-        this->setText("<p align='center'><img src=\""+imgPath+"\"><br><br>"+text);
+        this->setText("<p align='center'><img src=\""+imgPath+"\">"+text);
         break;
     default:
         this->setText("<p align='center'>"+text+" <img src=\""+imgPath+"\">");

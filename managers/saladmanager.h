@@ -17,6 +17,8 @@ public:
     static void deleteVegetable(Salad *salad, Vegetable *vegetable);
     static QJsonObject toJSON(Salad *salad);
     static Salad *fromJSON(QJsonObject json);
+    static double totalCalories(Salad *salad);
+    static double totalWeight(Salad *salad);
 };
 
 #endif // SALADMANAGER_H

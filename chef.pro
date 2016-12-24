@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     ui/tableui.cpp \
     ui/addui.cpp \
     managers/profilemanager.cpp \
-    managers/tablemanager.cpp
+    managers/tablemanager.cpp \
+    ui/saladinfoui.cpp \
+    ui/vegetablesui.cpp
 
 HEADERS  += ui/ui.h \
     data/vegetable.h \
@@ -49,7 +51,9 @@ HEADERS  += ui/ui.h \
     ui/tableui.h \
     ui/addui.h \
     managers/profilemanager.h \
-    managers/tablemanager.h
+    managers/tablemanager.h \
+    ui/saladinfoui.h \
+    ui/vegetablesui.h
 
 RESOURCES += \
     resources.qrc

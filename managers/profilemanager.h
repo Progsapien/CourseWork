@@ -6,6 +6,8 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QApplication>
+#include <QDebug>
 
 class ProfileManager : public QObject
 {

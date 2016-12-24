@@ -5,6 +5,7 @@ Button::Button(QString text)
     this->setText(text);
     this->setStyleSheet("background: rgba(60,120,210,1); border: none; color: white");
     this->setAlignment(Qt::AlignCenter);
+    this->setOpacity(0.1);
 }
 
 Button::Button(QString text, QString imgPath, int position) {
@@ -19,7 +20,7 @@ Button::Button(QString text, QString imgPath, int position) {
         this->setText("<p align='center'>"+text+" <img src=\""+imgPath+"\">");
     }
 
-    this->setOpacity(1);
+    this->setOpacity(0.1);
 }
 
 void Button::setOpacity(float opacity) {
@@ -28,21 +29,21 @@ void Button::setOpacity(float opacity) {
 
 void Button::mousePressEvent(QMouseEvent *event) {
     event->accept();
-    this->setOpacity(0.4);
+    this->setOpacity(1);
 }
 
 void Button::mouseReleaseEvent(QMouseEvent *event) {
     event->accept();
-    this->setOpacity(0.7);
+    this->setOpacity(0.8);
     emit clicked();
 }
 
 void Button::enterEvent(QEvent *event) {
     event->accept();
-    this->setOpacity(0.7);
+    this->setOpacity(0.8);
 }
 
 void Button::leaveEvent(QEvent *event) {
     event->accept();
-    this->setOpacity(1);
+    this->setOpacity(0.1);
 }

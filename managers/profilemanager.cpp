@@ -8,9 +8,11 @@ ProfileManager::ProfileManager(QObject *parent) : QObject(parent)
 
 QJsonArray ProfileManager::loadProfile() {
     QJsonArray json;
-    ob_file_profile->open(QIODevice::ReadOnly);
-    json =  QJsonDocument::fromBinaryData(ob_file_profile->readAll()).array();
-    ob_file_profile->close();
+    if(ob_file_profile->exists()) {
+        ob_file_profile->open(QIODevice::ReadOnly);
+        json = QJsonDocument::fromBinaryData(ob_file_profile->readAll()).array();
+        ob_file_profile->close();
+    };
     return json;
 }
 
@@ -25,5 +27,5 @@ void ProfileManager::dumpProfile(QJsonArray json) {
 
 void ProfileManager::setUsername(QString username) {
     this->username = !username.isEmpty() ? username : "";
-    ob_file_profile->setFileName(this->username);
+    ob_file_profile->setFileName(qApp->applicationDirPath()+"/"+this->username);
 }

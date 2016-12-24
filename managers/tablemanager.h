@@ -13,7 +13,7 @@ public:
     TableManager();
 
     static QJsonArray toJSON(Table *table);
-    static void fromJSON(QJsonArray json);
+    static Table *fromJSON(QJsonArray json);
 };
 
 #endif // TABLEMANAGER_H

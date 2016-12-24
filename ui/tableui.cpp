@@ -10,10 +10,9 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
 
     ob_label_listSalads = new QLabel("Список салатов");
 
-    ob_button_addSalad = new Button("Добавить");
-    ob_button_deleteSalad = new Button("Удалить");
-    ob_button_searchSalad = new Button("Поиск");
-    ob_button_sortSalad = new Button("Сортировать");
+    ob_button_addSalad = new Button("Добавить","qrc:/resources/img/add_salad_button.png", Button::Top);
+    ob_button_deleteSalad = new Button("Удалить", "qrc:/resources/img/delete_salad_button.png", Button::Top);
+    ob_button_searchSalad = new Button("Поиск", "qrc:/resources/img/search_salad_button.png", Button::Top);
     ob_vlay_list = new QVBoxLayout;
     ob_vlay_operations = new QVBoxLayout;
 
@@ -25,12 +24,15 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
 
     ob_window_addui = new AddUI;
 
+    ob_sbutton_add = new SaladButton("Салатов нет", "Добавить салат", "qrc:/resources/img/salad_empty.png", "qrc:/resources/img/salad.png");
+
     // config;
     setLayout(ob_hlay_main);
     setStyleSheet("background: rgb(54, 66, 86);");
 
-    ob_hlay_main->addLayout(ob_vlay_list);
-    ob_hlay_main->addLayout(ob_vlay_operations);
+    ob_hlay_main->addWidget(ob_sbutton_add);
+    //ob_hlay_main->addLayout(ob_vlay_list);
+    //ob_hlay_main->addLayout(ob_vlay_operations);
     ob_hlay_main->setSpacing(0);
     ob_hlay_main->setContentsMargins(0, 0, 0, 0);
 
@@ -41,40 +43,61 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     ob_vlay_operations->addWidget(ob_button_addSalad);
     ob_vlay_operations->addWidget(ob_button_deleteSalad);
     ob_vlay_operations->addWidget(ob_button_searchSalad);
-    ob_vlay_operations->addWidget(ob_button_sortSalad);
     ob_vlay_operations->setSpacing(0);
 
     ob_label_listSalads->setAlignment(Qt::AlignCenter);
     ob_label_listSalads->setStyleSheet("background: rgb(54, 66, 86); color: white");
     ob_label_listSalads->setMinimumHeight(50);
 
-    ob_list_salads->setStyleSheet("border: none; background: rgb(54, 66, 86);");
+    ob_list_salads->setStyleSheet("QListView { border: none; background: rgb(54, 66, 86); color: white;} "
+                                  "QListView::item:selected { background: rgb(75, 83, 97); border: none; color: white;  } "
+                                  "QListView::item { color: white; border: none; } ");
 
     ob_button_addSalad->setFixedWidth(90);
 
     connect(ob_button_addSalad,SIGNAL(clicked()),SLOT(onAddClick()));
+    connect(ob_window_addui,SIGNAL(createSalad(QString)),SLOT(onCreateSalad(QString)));
+    connect(ob_sbutton_add,SIGNAL(clicked()),SLOT(onAddClick()));
 }
 
 void TableUI::onAddClick() {
     emit changeWidget(ob_window_addui);
-    Salad *s = new Salad;
-    s->setTitle("sdfsdf");
-    Tomato *t = new Tomato;
-    Tomato *t1 = new Tomato;
-    Salad *s1 = new Salad;
-    s1->setTitle("НОвый саалат");
+}
 
-    SaladManager::addVegetable(s, t);
-    SaladManager::addVegetable(s1, t1);
-    SaladManager::addVegetable(s1,t);
-    ob_table->getSalads()->append(s);
-    ob_table->getSalads()->append(s1);
-    QJsonArray array = TableManager::toJSON(ob_table);
-    qDebug() << array;
-    ob_profile_man->dumpProfile(array);
+void TableUI::refreshTable() {
+    ob_list_salads->clear();
+    for(int i = 0; i < ob_table->getSalads()->count(); i++) {
+        QListWidgetItem *item = new QListWidgetItem;
+        item->setSizeHint(QSize(1, 40));
+        item->setText(ob_table->getSalads()->at(i)->title());
+        ob_list_salads->addItem(item);
+    }
+    ob_profile_man->dumpProfile(TableManager::toJSON(ob_table));
+    if(!TABLE_UI_SHOWED && ob_table->getSalads()->count() != 0) {
+        ob_hlay_main->addLayout(ob_vlay_list);
+        ob_hlay_main->addLayout(ob_vlay_operations);
+        TABLE_UI_SHOWED = true;
+        ob_sbutton_add->hide();
+    }
 }
 
 void TableUI::onLogin(QString username) {
     ob_profile_man->setUsername(username);
-   // SaladManager::fromJSON(ob_profile_man->loadProfile());
+    ob_table = TableManager::fromJSON(ob_profile_man->loadProfile());
+    if(ob_table->getSalads()->count() != 0) {
+        ob_sbutton_add->hide();
+        ob_hlay_main->addLayout(ob_vlay_list);
+        ob_hlay_main->addLayout(ob_vlay_operations);
+        TABLE_UI_SHOWED = true;
+    }
+    refreshTable();
 }
+
+void TableUI::onCreateSalad(QString saladName) {
+    Salad *new_salad = new Salad;
+    new_salad->setTitle(saladName);
+    ob_table->getSalads()->append(new_salad);
+    refreshTable();
+    changeWidget(this);
+}
+

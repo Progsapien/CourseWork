@@ -4,5 +4,9 @@
         <file>resources/img/salad.png</file>
         <file>resources/img/salad_empty.png</file>
         <file>resources/img/vegetables/tomatos/tomato.png</file>
+        <file>resources/img/salad_add.png</file>
+        <file>resources/img/delete_salad_button.png</file>
+        <file>resources/img/search_salad_button.png</file>
+        <file>resources/img/add_salad_button.png</file>
     </qresource>
 </RCC>

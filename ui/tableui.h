@@ -13,6 +13,7 @@
 #include "../managers/saladmanager.h"
 #include "addui.h"
 #include "../managers/tablemanager.h"
+#include "saladbutton.h"
 
 class TableUI : public QWidget
 {
@@ -28,7 +29,6 @@ private:
 
     Button *ob_button_addSalad,
            *ob_button_deleteSalad,
-           *ob_button_sortSalad,
            *ob_button_searchSalad;
 
     QListWidget *ob_list_salads;
@@ -39,9 +39,16 @@ private:
 
     AddUI *ob_window_addui;
 
+    SaladButton *ob_sbutton_add;
+
+    bool TABLE_UI_SHOWED;
+
+    void refreshTable();
+
 private slots:
     void onAddClick();
     void onLogin(QString username);
+    void onCreateSalad(QString saladName);
 signals:
     void changeWidget(QWidget *widget);
 };

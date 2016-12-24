@@ -5,7 +5,7 @@ AddUI::AddUI(QWidget *parent) : QWidget(parent)
     // create;
     ob_button_create = new Button("Создать салат");
 
-    ob_label_name = new QLabel("Введите имя салата");
+    ob_label_name = new QLabel("<img src=\"qrc:/resources/img/salad_add.png\"><br><br>Введите имя салата");
 
     ob_vlay_main = new QVBoxLayout;
 
@@ -20,7 +20,6 @@ AddUI::AddUI(QWidget *parent) : QWidget(parent)
     ob_vlay_main->addWidget(ob_line_name);
     ob_vlay_main->addWidget(ob_button_create);
     ob_vlay_main->setContentsMargins(0,0,0,0);
-    ob_vlay_main->setAlignment(Qt::AlignCenter);
 
     ob_label_name->setStyleSheet("color: white;");
     ob_label_name->setAlignment(Qt::AlignCenter);

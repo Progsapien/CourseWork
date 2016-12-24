@@ -20,21 +20,25 @@ QJsonObject SaladManager::toJSON(Salad *salad) {
     return json_object;
 }
 
-Salad* SaladManager::fromJSON(QJsonArray json) {
+Salad* SaladManager::fromJSON(QJsonObject json) {
     Salad *new_salad = new Salad;
-    QJsonArray array;
+    QString vegetable_name;
+    new_salad->setTitle(json.value("title").toString());
 
-    foreach (QJsonValue value, json) {
-        if(value.isArray()) {
-            array = value.toArray();
-            foreach (QJsonValue object, array) {
-                if(object.isObject()) {
-                    //qDebug() << object.toObject().value("title").toString();
-                }
-            }
+    foreach(QJsonValue value, json["vegetables"].toArray()) {
+        vegetable_name = value.toObject()["title"].toString();
+        qDebug() << vegetable_name;
+        if(vegetable_name == "Помидор") {
+            Tomato *vegetable = new Tomato;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+            qDebug() << "PP " << new_salad->allVegetables()->count();
+        } else if(vegetable_name == "...") {
+            // ..... !!!!
         }
+
     }
-    return new Salad;
+    return new_salad;
 }
 
 void SaladManager::addVegetable(Salad *salad, Vegetable *vegetable) {

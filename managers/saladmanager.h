@@ -16,7 +16,7 @@ public:
     static void addVegetable(Salad *salad, Vegetable *vegetable);
     static void deleteVegetable(Salad *salad, Vegetable *vegetable);
     static QJsonObject toJSON(Salad *salad);
-    static Salad *fromJSON(QJsonArray json);
+    static Salad *fromJSON(QJsonObject json);
 };
 
 #endif // SALADMANAGER_H

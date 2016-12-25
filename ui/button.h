@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QMouseEvent>
 #include <QEvent>
+#include <QDebug>
 
 class Button : public QLabel
 {
@@ -15,8 +16,11 @@ public:
         Left = 1, Top, Right
     };
 
+    void setDefaultOpacity(float opacity);
+
 private:
     void setOpacity(float opacity);
+    float default_opacity;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event);

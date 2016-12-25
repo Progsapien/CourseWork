@@ -16,6 +16,7 @@
 #include "saladbutton.h"
 #include "saladinfoui.h"
 #include "vegetablesui.h"
+#include "vegetablecreatorui.h"
 
 class TableUI : public QWidget
 {
@@ -24,10 +25,9 @@ public:
     explicit TableUI(QWidget *parent = 0);
 private:
     QLabel *ob_label_listSalads;
-    QVBoxLayout *ob_vlay_list,
-                *ob_vlay_operations;
+    QVBoxLayout *ob_vlay_main;
 
-    QHBoxLayout *ob_hlay_main;
+    QHBoxLayout *ob_hlay_buttons;
 
     Button *ob_button_addSalad,
            *ob_button_deleteSalad,
@@ -47,18 +47,27 @@ private:
 
     VegetablesUI *ob_window_veg;
 
+    VegetableCreatorUI *ob_window_vegCreator;
+
+    Salad *current_salad;
+
     bool TABLE_UI_SHOWED;
 
     void refreshTable();
 
 private slots:
     void onAddClick();
+    void onDeleteClick();
     void onLogin(QString username);
     void onCreateSalad(QString saladName);
     void onDoubleClick(QListWidgetItem *item);
     void backToTable();
     void ingredientsCall();
     void backToInfo();
+    void backToIngredients();
+    void onAddVegetable();
+    void onVegetableSelected(Vegetable *veg);
+    void onDeleteVegetable();
 signals:
     void changeWidget(QWidget *widget);
 };

@@ -4,6 +4,12 @@
 #include <QObject>
 #include "../data/salad.h"
 #include "../data/vegetables/tomato.h"
+#include "../data/vegetables/asparagus.h"
+#include "../data/vegetables/bow.h"
+#include "../data/vegetables/cucumber.h"
+#include "../data/vegetables/garlic.h"
+#include "../data/vegetables/gourd.h"
+#include "../data/vegetables/tomato.h"
 #include <QJsonObject>
 #include <QJsonArray>
 

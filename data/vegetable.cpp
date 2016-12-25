@@ -55,6 +55,10 @@ void Vegetable::fromJSON(QJsonObject json) {
     this->_weight = json["weight"].toDouble();
 }
 
+QString Vegetable::icon() {
+    return this->_icon;
+}
+
 Vegetable::~Vegetable() {
 
 }

@@ -3,10 +3,10 @@
 
 #include "../vegetable.h"
 
-class Leguminous : public Vegetable
+class Bulbous : public Vegetable
 {
 public:
-    Leguminous();
+    Bulbous();
 
     QString getCategory();
 

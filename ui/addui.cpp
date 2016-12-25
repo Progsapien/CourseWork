@@ -3,7 +3,7 @@
 AddUI::AddUI(QWidget *parent) : QWidget(parent)
 {
     // create;
-    ob_button_create = new Button("Создать салат");
+    ob_button_create = new Button("", "qrc:/resources/img/add_salad_button.png", Button::Top);
 
     ob_label_name = new QLabel("<img src=\"qrc:/resources/img/salad_add.png\"><br><br>Введите имя салата");
 

@@ -1,12 +1,20 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/img/chef.png</file>
-        <file>resources/img/salad.png</file>
-        <file>resources/img/salad_empty.png</file>
-        <file>resources/img/vegetables/tomatos/tomato.png</file>
-        <file>resources/img/salad_add.png</file>
-        <file>resources/img/delete_salad_button.png</file>
-        <file>resources/img/search_salad_button.png</file>
         <file>resources/img/add_salad_button.png</file>
+        <file>resources/img/chef.png</file>
+        <file>resources/img/delete_salad_button.png</file>
+        <file>resources/img/next.png</file>
+        <file>resources/img/prev.png</file>
+        <file>resources/img/salad.png</file>
+        <file>resources/img/salad_add.png</file>
+        <file>resources/img/salad_empty.png</file>
+        <file>resources/img/search_salad_button.png</file>
+        <file>resources/img/vegetables/bulbous/garlic.png</file>
+        <file>resources/img/vegetables/bulbous/onion.png</file>
+        <file>resources/img/vegetables/dessert/asparagus.png</file>
+        <file>resources/img/vegetables/pumpkin/cucumber.png</file>
+        <file>resources/img/vegetables/pumpkin/gourd.png</file>
+        <file>resources/img/vegetables/tomatos/tomato.png</file>
+        <file>resources/img/more.png</file>
     </qresource>
 </RCC>

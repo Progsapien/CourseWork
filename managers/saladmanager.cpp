@@ -32,11 +32,27 @@ Salad* SaladManager::fromJSON(QJsonObject json) {
             Tomato *vegetable = new Tomato;
             vegetable->fromJSON(value.toObject());
             SaladManager::addVegetable(new_salad, vegetable);
-            qDebug() << "PP " << new_salad->allVegetables()->count();
-        } else if(vegetable_name == "...") {
-            // ..... !!!!
-        }
-
+        } else if(vegetable_name == "Спаржа") {
+            Asparagus *vegetable = new Asparagus;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+        } else if(vegetable_name == "Лук") {
+            Bow *vegetable = new Bow;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+        } else if(vegetable_name == "Огурец") {
+            Cucumber *vegetable = new Cucumber;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+        } else if(vegetable_name == "Чеснок") {
+            Garlic *vegetable = new Garlic;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+        } else if(vegetable_name == "Тыква") {
+            Gourd *vegetable = new Gourd;
+            vegetable->fromJSON(value.toObject());
+            SaladManager::addVegetable(new_salad, vegetable);
+        };
     }
     return new_salad;
 }
@@ -63,4 +79,8 @@ double SaladManager::totalWeight(Salad *salad) {
 
 void SaladManager::addVegetable(Salad *salad, Vegetable *vegetable) {
     salad->allVegetables()->append(vegetable);
+}
+
+void SaladManager::deleteVegetable(Salad *salad, Vegetable *vegetable) {
+    salad->allVegetables()->removeOne(vegetable);
 }

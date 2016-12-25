@@ -6,8 +6,8 @@ SaladInfoUI::SaladInfoUI(QWidget *parent) : QWidget(parent)
 
     ob_label_info = new QLabel;
 
-    ob_button_ingredients = new Button("Ингредиенты..");
-    ob_button_back = new Button("Назад");
+    ob_button_ingredients = new Button("", "qrc:/resources/img/more.png", Button::Top);
+    ob_button_back = new Button("", "qrc:/resources/img/prev.png", Button::Top);
 
     ob_vlay_main = new QVBoxLayout;
 

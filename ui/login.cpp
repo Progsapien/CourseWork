@@ -41,6 +41,7 @@ Login::Login(QWidget *parent) :
 }
 
 void Login::onButtonLoginClick() {
-    emit login(ob_line_name->text());
-    qDebug() << ob_line_name->text();
+    if(!ob_line_name->text().isEmpty()) {
+        emit login(ob_line_name->text());
+    }
 }

@@ -29,6 +29,7 @@ SortingSaladsUI::SortingSaladsUI(Table *table, QWidget *parent) : QWidget(parent
     ob_vlay_main->setSpacing(0);
 
     ob_label_title->setAlignment(Qt::AlignCenter);
+    ob_label_title->setFixedHeight(50);
 
     connect(ob_rb_byName,SIGNAL(clicked(bool)),SLOT(clicked(bool)));
     connect(ob_rb_byCalories,SIGNAL(clicked(bool)),SLOT(clicked(bool)));

@@ -72,7 +72,7 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     ob_button_searchSalad->hide();
     ob_button_searchSalad->setFixedHeight(60);
 
-    ob_window_sort->setFixedSize(300,350);
+    ob_window_sort->setFixedSize(300,150);
     ob_window_sort->hide();
 
     connect(ob_button_addSalad,SIGNAL(clicked()),SLOT(onAddClick()));
@@ -204,7 +204,7 @@ void TableUI::onAddVegetable() {
 
 void TableUI::onSortClicked() {
     if(!ob_window_sort->isVisible()) {
-        ob_window_sort->move(width()-300,height()-350-ob_button_searchSalad->height());
+        ob_window_sort->move(width()-300,height()-150-ob_button_searchSalad->height());
         ob_window_sort->show();
         ob_window_sort->raise();
     } else {

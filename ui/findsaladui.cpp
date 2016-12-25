@@ -52,24 +52,26 @@ void FindSaladUI::onFind(QString text) {
     } else {
         QStringList list_vegs = text.split(" ");
         list.clear();
+        list_vegs.removeAll("");
+        int counter = 0;
         emit clearList();
-        qDebug() << list_vegs;
-        for(int i = 0; i < list_vegs.count(); i++) {
-            for(int j = 0; j < ob_table->getSalads()->count(); j++) {
-                for(int k = 0; k < ob_table->getSalads()->at(j)->allVegetables()->count(); k++) {
-                    if(list_vegs.at(i) == ob_table->getSalads()->at(j)->allVegetables()->at(k)->title()) {
-                        if(!list.contains(ob_table->getSalads()->at(j)->title())) {
-                            list.append(ob_table->getSalads()->at(j)->title());
+        for(int i = 0; i < ob_table->getSalads()->count(); i++) {
+            counter = 0;
+            for(int j = 0; j < ob_table->getSalads()->at(i)->allVegetables()->count(); j++) {
+                for(int k = 0; k < list_vegs.count(); k++) {
+                    if(list_vegs.at(k) == ob_table->getSalads()->at(i)->allVegetables()->at(j)->title()) {
+                        counter++;
+                        if(!list.contains(ob_table->getSalads()->at(i)->title())) {
+                            list.append(ob_table->getSalads()->at(i)->title());
+                        }
+                        if(counter == list_vegs.count()) {
+                            emit onFounded(list);
+                        } else {
+                            emit clearList();
                         }
                     }
                 }
             }
-        }
-        qDebug() << list;
-        if(list_vegs.count() == list.count()) {
-            emit onFounded(list);
-        } else {
-            emit clearList();
         }
     }
 }

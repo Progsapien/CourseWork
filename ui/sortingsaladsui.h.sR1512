@@ -1,0 +1,17 @@
+#ifndef SORTINGSALADSUI_H
+#define SORTINGSALADSUI_H
+
+#include <QWidget>
+
+class SortingSaladsUI : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit SortingSaladsUI(QWidget *parent = 0);
+
+signals:
+
+public slots:
+};
+
+#endif // SORTINGSALADSUI_H

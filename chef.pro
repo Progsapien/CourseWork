@@ -37,7 +37,9 @@ SOURCES += main.cpp\
     data/vegetables/garlic.cpp \
     data/vegetable_categories/pumpkin.cpp \
     data/vegetables/cucumber.cpp \
-    data/vegetables/gourd.cpp
+    data/vegetables/gourd.cpp \
+    ui/sortingsaladsui.cpp \
+    ui/findsaladui.cpp
 
 HEADERS  += ui/ui.h \
     data/vegetable.h \
@@ -63,7 +65,9 @@ HEADERS  += ui/ui.h \
     data/vegetables/garlic.h \
     data/vegetable_categories/pumpkin.h \
     data/vegetables/cucumber.h \
-    data/vegetables/gourd.h
+    data/vegetables/gourd.h \
+    ui/sortingsaladsui.h \
+    ui/findsaladui.h
 
 RESOURCES += \
     resources.qrc

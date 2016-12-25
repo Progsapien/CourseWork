@@ -16,5 +16,6 @@
         <file>resources/img/vegetables/pumpkin/gourd.png</file>
         <file>resources/img/vegetables/tomatos/tomato.png</file>
         <file>resources/img/more.png</file>
+        <file>resources/img/sort.png</file>
     </qresource>
 </RCC>

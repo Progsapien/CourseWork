@@ -12,7 +12,8 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
 
     ob_button_addSalad = new Button("","qrc:/resources/img/add_salad_button.png", Button::Top);
     ob_button_deleteSalad = new Button("", "qrc:/resources/img/delete_salad_button.png", Button::Top);
-    ob_button_searchSalad = new Button("", "qrc:/resources/img/search_salad_button.png", Button::Top);
+    ob_button_searchSalad = new Button("", "qrc:/resources/img/sort.png", Button::Top);
+    ob_button_findSalad = new Button("", "qrc:/resources/img/search_salad_button.png", Button::Top);
 
     ob_vlay_main = new QVBoxLayout;
 
@@ -29,6 +30,10 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     ob_window_veg = new VegetablesUI;
 
     ob_window_vegCreator = new VegetableCreatorUI;
+
+    ob_window_sort = new SortingSaladsUI(ob_table, this);
+
+    ob_window_find = new FindSaladUI(this);
 
     ob_sbutton_add = new SaladButton("Салатов нет", "Добавить салат", "qrc:/resources/img/salad_empty.png", "qrc:/resources/img/salad.png");
 
@@ -47,6 +52,7 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     ob_hlay_buttons->setSpacing(1);
     ob_hlay_buttons->addWidget(ob_button_addSalad);
     ob_hlay_buttons->addWidget(ob_button_deleteSalad);
+    ob_hlay_buttons->addWidget(ob_button_findSalad);
     ob_hlay_buttons->addWidget(ob_button_searchSalad);
 
     ob_label_listSalads->setAlignment(Qt::AlignCenter);
@@ -66,6 +72,9 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     ob_button_searchSalad->hide();
     ob_button_searchSalad->setFixedHeight(60);
 
+    ob_window_sort->setFixedSize(300,350);
+    ob_window_sort->hide();
+
     connect(ob_button_addSalad,SIGNAL(clicked()),SLOT(onAddClick()));
     connect(ob_button_deleteSalad,SIGNAL(clicked()),SLOT(onDeleteClick()));
     connect(ob_window_addui,SIGNAL(createSalad(QString)),SLOT(onCreateSalad(QString)));
@@ -78,6 +87,11 @@ TableUI::TableUI(QWidget *parent) : QWidget(parent)
     connect(ob_window_veg,SIGNAL(addVegetable()),SLOT(onAddVegetable()));
     connect(ob_window_vegCreator,SIGNAL(selected(Vegetable*)),SLOT(onVegetableSelected(Vegetable*)));
     connect(ob_window_veg,SIGNAL(deleteVegetable()),SLOT(onDeleteVegetable()));
+    connect(ob_window_sort,SIGNAL(sorted()),SLOT(refreshTable()));
+    connect(ob_button_searchSalad,SIGNAL(clicked()),SLOT(onSortClicked()));
+    connect(ob_button_findSalad,SIGNAL(clicked()),SLOT(onFindClicked()));
+    connect(ob_window_find,SIGNAL(onFounded(QStringList)),SLOT(onFounded(QStringList)));
+    connect(ob_window_find,SIGNAL(clearList()),ob_list_salads,SLOT(clear()));
 }
 
 void TableUI::onAddClick() {
@@ -115,6 +129,8 @@ void TableUI::refreshTable() {
 void TableUI::onLogin(QString username) {
     ob_profile_man->setUsername(username);
     ob_table = TableManager::fromJSON(ob_profile_man->loadProfile());
+    ob_window_sort->setTable(ob_table);
+    ob_window_find->setTable(ob_table);
     if(ob_table->getSalads()->count() != 0) {
         ob_sbutton_add->hide();
         ob_label_listSalads->show();
@@ -137,12 +153,18 @@ void TableUI::onCreateSalad(QString saladName) {
     Salad *new_salad = new Salad;
     new_salad->setTitle(saladName);
     ob_table->getSalads()->append(new_salad);
+    TABLE_UI_SHOWED = false;
     refreshTable();
     changeWidget(this);
 }
 
 void TableUI::onDoubleClick(QListWidgetItem *item) {
-    current_salad = ob_table->getSalads()->at(ob_list_salads->row(item));
+    for(int i = 0; i < ob_table->getSalads()->count(); i++) {
+        if(item->text() == ob_table->getSalads()->at(i)->title()) {
+            current_salad = ob_table->getSalads()->at(i);
+            break;
+        }
+    }
     ob_window_veg->updateList(current_salad);
     ob_window_info->showInfo(current_salad);
     changeWidget(ob_window_info);
@@ -178,4 +200,32 @@ void TableUI::onDeleteVegetable() {
 
 void TableUI::onAddVegetable() {
     emit changeWidget(ob_window_vegCreator);
+}
+
+void TableUI::onSortClicked() {
+    if(!ob_window_sort->isVisible()) {
+        ob_window_sort->move(width()-300,height()-350-ob_button_searchSalad->height());
+        ob_window_sort->show();
+        ob_window_sort->raise();
+    } else {
+        ob_window_sort->hide();
+    }
+}
+
+void TableUI::onFindClicked() {
+    qDebug() << 123;
+    if(!ob_window_find->isVisible()) {
+        ob_window_find->setFixedSize(width(),100);
+        ob_window_find->move(0, height()-ob_window_find->height()-ob_button_searchSalad->height());
+        ob_window_find->show();
+        ob_window_find->raise();
+    } else {
+        ob_window_find->hide();
+        refreshTable();
+    }
+}
+
+void TableUI::onFounded(QStringList list) {
+    ob_list_salads->clear();
+    ob_list_salads->addItems(list);
 }
